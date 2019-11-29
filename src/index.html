@@ -7,10 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="../assets/favicon.ico">
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/about.css">
+    <link rel="stylesheet" href="./css/network.css">
     <style>
         * {
             margin: 0;
             padding: 0;
+            font-size: 14px;
         }
 
         .header-nav {
@@ -26,7 +30,22 @@
             box-shadow: 0px 0px 10px #f7f2f2;
         }
 
-        .el-aside,
+        .el-footer {
+            line-height: 60px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .el-menu {
+            border-right: none;
+        }
+
+        .el-aside {
+            height: calc(100vh - 60px);
+            border-right: 1px solid #e6e6e6;
+            background-color: #545c64;
+        }
+
         .el-main {
             height: calc(100vh - 60px - 60px);
         }
@@ -51,7 +70,7 @@
                     </el-col>
                     <el-col :span="18">
                         <div class="header-nav">
-                            <el-link :underline="false" href="#/log">关于</el-link>
+                            <el-link :underline="false" href="#/about">关于</el-link>
                             <el-link :underline="false">设置</el-link>
                             <el-link :underline="false">帮助</el-link>
                         </div>
@@ -62,16 +81,31 @@
             </el-header>
             <el-container class="main">
                 <el-aside width="220px">
-                    <el-menu default-active="2" :router="isUseIndex" class="el-menu-vertical-demo" @open="handleOpen"
+                    <el-menu :router="isUseIndex" @open="handleOpen" background-color="#545c64" text-color="#fff"
                         @close="handleClose">
-                        <el-submenu index="1">
+                        <div v-for="item in menu" :key="item.page">
+                            <el-submenu v-if="item.children" :index="item.page">
+                                <template slot="title">
+                                    <i class="el-icon-location"></i>
+                                    <span>{{item.label}}</span>
+                                </template>
+                                <el-menu-item :index="item1.page" v-for="item1 in item.children" :key="item1.page"
+                                    @click="setPage(item1.page)">{{item1.label}}</el-menu-item>
+                            </el-submenu>
+                            <el-menu-item v-else :index="item.page" @click="setPage(item.page)">
+                                <i class="el-icon-menu"></i>
+                                <span>{{item.label}}</span>
+                            </el-menu-item>
+                        </div>
+                        <!-- <el-submenu index="1">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
                                 <span>信息显示</span>
                             </template>
-                            <el-menu-item index="1-1">设备</el-menu-item>
-                            <el-menu-item index="1-2">病人</el-menu-item>
-                            <el-menu-item index="log">日志</el-menu-item>
+                            <el-menu-item index="patient">病人信息</el-menu-item>
+                            <el-menu-item index="1-2">设备信息</el-menu-item>
+                            <el-menu-item index="log">日志信息</el-menu-item>
+                            <el-menu-item index="log">预约记录</el-menu-item>
                         </el-submenu>
                         <el-menu-item index="2">
                             <i class="el-icon-menu"></i>
@@ -84,7 +118,7 @@
                         <el-menu-item index="4">
                             <i class="el-icon-setting"></i>
                             <span slot="title">导航四</span>
-                        </el-menu-item>
+                        </el-menu-item> -->
                     </el-menu>
                 </el-aside>
                 <el-container>
@@ -99,8 +133,14 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-    <!-- <script src="../lib/require.js"></script> -->
-    <script src="./component/index.js"></script>
+    <script src="./component/log.js"></script>
+    <script src="./component/patient.js"></script>
+    <script src="./component/equipment.js"></script>
+    <script src="./component/about.js"></script>
+    <script src="./component/network.js"></script>
+    <script src="./component/action.js"></script>
+    <script src="./component/asyncComponent.js"></script>
+    <script src="./component/acount.js"></script>
     <script src="./index.js"></script>
 </body>
 

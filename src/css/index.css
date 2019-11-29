@@ -1,0 +1,53 @@
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.form-inline {
+    height: 51px;
+    width : 100%;
+}
+
+.el-table-style {
+    width : 100%;
+    height: calc(100vh - 60px - 60px - 51px - 30px - 40px);
+}
+
+.el-table-user {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.el-page-pagination {
+    width      : 100%;
+    height     : 30px;
+    line-height: 30px;
+}
+
+/* 基础投影 */
+.base-shadow {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+}
+
+/* 浅色投影 */
+.tint-shadow {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+}
+
+.el-collapse-item__header {
+    background  : #F2F6FC;
+    padding-left: 15px;
+}
+
+.el-collapse-item__wrap {
+    padding: 0 15px;
+}
+
+.el-row>.el-col {
+    margin-bottom: 20px;
+}
